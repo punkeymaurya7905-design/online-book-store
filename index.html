@@ -1,0 +1,2425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="_MxlHVl6K5nTKne445hXuYr9OXzynmxUzDjY2XEXHpY" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SIET Online Book Store</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f5f8fc;
+    color: #222;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.top-bar {
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(90deg, #0d47a1, #1976d2);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.moving-text {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+    animation: moveText 14s linear infinite;
+}
+
+@keyframes moveText {
+
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    width: 100%;
+    background: white;
+    padding: 15px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.store-name {
+    color: #0d47a1;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.store-name span {
+    display: block;
+    color: #777;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #1565c0;
+}
+
+.cart-nav {
+    background: #0d47a1;
+    color: white !important;
+    padding: 10px 17px;
+    border-radius: 25px;
+}
+
+
+/* Hamburger */
+
+.menu-btn {
+    display: none;
+    border: none;
+    background: none;
+    font-size: 30px;
+    color: #0d47a1;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 440px;
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 8%;
+    gap: 30px;
+}
+
+.hero-text {
+    max-width: 600px;
+}
+
+.hero-text h1 {
+    color: #0d47a1;
+    font-size: 48px;
+    margin-bottom: 18px;
+}
+
+.hero-text h1 span {
+    color: #1976d2;
+}
+
+.hero-text p {
+    color: #555;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+    padding: 13px 25px;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.primary-btn {
+    background: #0d47a1;
+    color: white;
+}
+
+.secondary-btn {
+    background: white;
+    color: #0d47a1;
+    border: 2px solid #0d47a1;
+}
+
+.primary-btn:hover {
+    background: #1976d2;
+}
+
+.secondary-btn:hover {
+    background: #e3f2fd;
+}
+
+
+/* Hero Book */
+
+.hero-book {
+    font-size: 130px;
+    background: white;
+    padding: 35px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-section {
+    padding: 25px 8%;
+    background: white;
+}
+
+.search-box {
+    max-width: 650px;
+    margin: auto;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 16px 22px;
+    border: 2px solid #d5e5fa;
+    border-radius: 30px;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-box input:focus {
+    border-color: #1976d2;
+}
+
+
+/* =========================
+   GENERAL SECTION
+========================= */
+
+.section {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 55px 0;
+}
+
+.section-title {
+    text-align: center;
+    color: #0d47a1;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 35px;
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.category {
+    width: 180px;
+    background: white;
+    padding: 25px 15px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.category:hover {
+    transform: translateY(-6px);
+}
+
+.category-icon {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.category h3 {
+    color: #0d47a1;
+}
+
+
+/* =========================
+   BOOK GRID
+========================= */
+
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+
+/* =========================
+   BOOK CARD
+========================= */
+
+.book-card {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+    transition: 0.3s;
+    position: relative;
+    overflow: visible;
+}
+
+.book-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.17);
+}
+
+.book-card img {
+    width: 150px;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.25s ease;
+    position: relative;
+    z-index: 1;
+}
+.book-card img:hover {
+    transform: translateY(-25px) scale(1.12);
+    z-index: 100;
+}
+
+
+.book-card h3 {
+    color: #1565c0;
+    margin: 15px 0 7px;
+    font-size: 18px;
+}
+
+.author {
+    color: #777;
+    font-size: 14px;
+}
+
+.rating {
+    margin: 10px 0;
+    color: #f59f00;
+}
+
+.price {
+    font-size: 21px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.old-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.book-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.book-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.details-btn {
+    background: #e3f2fd;
+    color: #0d47a1;
+}
+
+.add-btn {
+    background: #0d47a1;
+    color: white;
+}
+
+.add-btn:hover {
+    background: #1976d2;
+}
+
+
+/* =========================
+   CATALOG
+========================= */
+
+.catalog-section {
+    background: #eef5fc;
+}
+
+.catalog-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.catalog-controls select {
+    padding: 11px 18px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    text-align: center;
+}
+
+.about h2 {
+    color: #0d47a1;
+    margin-bottom: 15px;
+}
+
+.about p {
+    color: #666;
+    line-height: 1.8;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #0d47a1;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 7px;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    padding: 30px 15px;
+    overflow-y: auto;
+}
+
+.modal-box {
+    background: white;
+    width: 95%;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 18px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #555;
+}
+
+.modal-box h2 {
+    color: #0d47a1;
+    margin-bottom: 20px;
+}
+
+.modal-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.modal-box button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #0d47a1;
+    color: white;
+    font-weight: bold;
+}
+
+
+/* =========================
+   CART
+========================= */
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.quantity button {
+    border: none;
+    padding: 5px 9px;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.cart-total {
+    font-size: 21px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 13px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 25px;
+    background: #0d47a1;
+    color: white;
+    font-weight: bold;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 750px) {
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        right: 15px;
+        top: 75px;
+        width: 210px;
+        background: white;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .nav-menu.show {
+        display: flex;
+    }
+
+    .nav-menu a {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 45px 7%;
+    }
+
+    .hero-text h1 {
+        font-size: 36px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-book {
+        font-size: 80px;
+    }
+
+    .store-name {
+        font-size: 17px;
+    }
+
+}
+/* =========================
+   FIRST LOGIN SCREEN
+========================= */
+
+#firstLoginScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: 20px;
+}
+
+.first-login-box {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    padding: 35px 30px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.first-login-logo {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.first-login-box h1 {
+    color: #0d47a1;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.first-login-box p {
+    color: #777;
+    margin-bottom: 22px;
+}
+
+.first-login-box input {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0;
+    border: 1px solid #ccd8e6;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+}
+
+.first-login-box input:focus {
+    border-color: #1976d2;
+}
+
+.first-login-btn {
+    width: 100%;
+    padding: 13px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 25px;
+    background: #0d47a1;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.first-login-btn:hover {
+    background: #1976d2;
+}
+
+.first-login-register {
+    margin-top: 18px;
+    font-size: 14px;
+    color: #666;
+}
+
+
+/* =========================
+   BOOK DETAILS GALLERY
+========================= */
+
+.details-gallery {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-detail-image {
+    width: 200px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+.main-detail-image:hover {
+    transform: scale(1.03);
+}
+
+.gallery-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.gallery-thumb {
+    width: 55px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.gallery-thumb:hover {
+    transform: translateY(-3px);
+}
+
+.gallery-thumb.active {
+    border-color: #1976d2;
+}
+
+.gallery-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.gallery-buttons button {
+    width: auto;
+    padding: 8px 18px;
+    margin: 0;
+    border-radius: 20px;
+    background: #e3f2fd;
+    color: #0d47a1;
+}
+
+</style>
+</head>
+
+
+<body>
+<!-- =========================
+     FIRST LOGIN SCREEN
+========================= -->
+
+<div id="firstLoginScreen">
+
+    <div class="first-login-box">
+
+        <img src="shambhunath logo.jpg"
+             class="first-login-logo"
+             alt="SIET Logo">
+
+        <h1>📚 SIET Book Store</h1>
+
+        <p>Login to continue to our Online Book Store</p>
+
+        <input type="email"
+               id="firstLoginEmail"
+               placeholder="Email Address">
+
+        <input type="password"
+               id="firstLoginPassword"
+               placeholder="Password">
+
+        <button class="first-login-btn"
+                onclick="firstLogin()">
+            🔐 Login
+        </button>
+
+        <div class="first-login-register">
+            New user?
+            <a href="#"
+               onclick="openRegisterFromFirstLogin(); return false;">
+                Create Account
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     TOP BAR
+========================= -->
+
+<div class="top-bar">
+
+    <div class="moving-text">
+       <h3> 📚 WELCOME TO SIET ONLINE BOOK STORE — BOOKS FOR KNOWLEDGE & LEARNING 📚</h3>
+    </div>
+
+</div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="logo-area">
+
+        <img src="shambhunath logo.jpg"
+             class="logo"
+             alt="SIET Logo">
+
+        <div class="store-name">
+            SIET Book Store
+            <b>
+            <span>Shambhunath Institute of Engineering & Technology</span>
+        </div>
+
+    </div>
+
+
+    <button class="menu-btn" onclick="toggleMenu()">
+        ☰
+    </button>
+
+
+    <nav class="nav-menu" id="navMenu">
+
+        <a href="#home" onclick="closeMenu()">Home</a>
+
+        <a href="#catalogue" onclick="closeMenu()">Catalogue</a>
+
+        <a href="#categories" onclick="closeMenu()">Categories</a>
+
+        <a href="#about" onclick="closeMenu()">About</a>
+
+        <a href="#" onclick="openLogin(); closeMenu(); return false;">
+            Login
+        </a>
+
+        <a href="#" onclick="openRegister(); closeMenu(); return false;">
+            Register
+        </a>
+
+        <a href="#" class="cart-nav"
+           onclick="openCart(); closeMenu(); return false;">
+            🛒 Cart (<span id="cartCount">0</span>)
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-text">
+
+        <h1>
+            Discover Your
+            <span>Next Book</span>
+        </h1>
+
+        <p>
+            Welcome to SIET Online Book Store.
+            Find programming, engineering, technology and
+            educational books at one place.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn"
+                    onclick="showCatalogue()">
+                📚 Explore Catalogue
+            </button>
+
+            <button class="secondary-btn"
+                    onclick="document.getElementById('categories').scrollIntoView()">
+                Browse Categories
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-book">
+        📖
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<section class="search-section">
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search books by title or author..."
+            onkeyup="searchBooks()">
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURED BOOKS
+========================= -->
+
+<section class="section" id="featured">
+
+    <h2 class="section-title">
+        ⭐ Featured Books
+    </h2>
+
+    <p class="section-subtitle">
+        Some of our most popular books
+    </p>
+
+
+    <div class="books-container">
+
+
+        <!-- Book 1 -->
+
+        <div class="book-card">
+
+            <img src="java book.jpg"
+                 alt="Head First Java">
+
+            <h3>Head First Java</h3>
+
+            <p class="author">
+                Kathy Sierra & Bert Bates
+            </p>
+
+            <div class="rating">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <div class="price">
+                ₹799
+            </div>
+
+            <div class="book-buttons">
+
+                <button class="details-btn"
+                        onclick="bookDetails('Head First Java','Kathy Sierra & Bert Bates',799,'java book.jpg')">
+                    Details
+                </button>
+
+                <button class="add-btn"
+                        onclick="addToCart('Head First Java',799)">
+                    🛒 Add
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Book 2 -->
+
+        <div class="book-card">
+
+            <img src="python book.jpg"
+                 alt="Python Crash Course">
+
+            <h3>Python Crash Course</h3>
+
+            <p class="author">
+                Eric Matthes
+            </p>
+
+            <div class="rating">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <div class="price">
+                ₹650
+            </div>
+
+            <div class="book-buttons">
+
+                <button class="details-btn"
+                        onclick="bookDetails('Python Crash Course','Eric Matthes',650,'python book.jpg')">
+                    Details
+                </button>
+
+                <button class="add-btn"
+                        onclick="addToCart('Python Crash Course',650)">
+                    🛒 Add
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Book 3 -->
+
+        <div class="book-card">
+
+            <img src="html book.jpg"
+                 alt="HTML CSS">
+
+            <h3>HTML & CSS</h3>
+
+            <p class="author">
+                Jon Duckett
+            </p>
+
+            <div class="rating">
+                ⭐⭐⭐⭐☆
+            </div>
+
+            <div class="price">
+                ₹599
+            </div>
+
+            <div class="book-buttons">
+
+                <button class="details-btn"
+                        onclick="bookDetails('HTML & CSS','Jon Duckett',599,'html book.jpg')">
+                    Details
+                </button>
+
+                <button class="add-btn"
+                        onclick="addToCart('HTML & CSS',599)">
+                    🛒 Add
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div style="text-align:center;margin-top:30px;">
+
+        <button class="primary-btn"
+                onclick="showCatalogue()">
+            View All Books →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<section class="section" id="categories">
+
+    <h2 class="section-title">
+        📚 Browse Categories
+    </h2>
+
+    <p class="section-subtitle">
+        Find books according to your interest
+    </p>
+
+
+    <div class="categories">
+
+        <div class="category"
+             onclick="filterCategory('Programming')">
+
+            <div class="category-icon">💻</div>
+
+            <h3>Programming</h3>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('Web')">
+
+            <div class="category-icon">🌐</div>
+
+            <h3>Web Technology</h3>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('Database')">
+
+            <div class="category-icon">🗄️</div>
+
+            <h3>Database</h3>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('AI')">
+
+            <div class="category-icon">🤖</div>
+
+            <h3>AI & ML</h3>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CATALOGUE
+========================= -->
+
+<section class="section catalog-section" id="catalogue">
+
+    <h2 class="section-title">
+        📚 Book Catalogue
+    </h2>
+
+    <p class="section-subtitle">
+        Explore our complete collection
+    </p>
+
+
+    <div class="catalog-controls">
+
+        <select id="categoryFilter"
+                onchange="filterBooks()">
+
+            <option value="all">
+                All Categories
+            </option>
+
+            <option value="Programming">
+                Programming
+            </option>
+
+            <option value="Web">
+                Web Technology
+            </option>
+
+            <option value="Database">
+                Database
+            </option>
+
+            <option value="AI">
+                AI & ML
+            </option>
+
+        </select>
+
+
+        <select id="sortFilter"
+                onchange="sortBooks()">
+
+            <option value="default">
+                Sort Books
+            </option>
+
+            <option value="low">
+                Price: Low to High
+            </option>
+
+            <option value="high">
+                Price: High to Low
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="books-container" id="catalogueBooks">
+
+<!-- PHP & MySQL Book -->
+<div class="book-card"
+     data-category="Programming"
+     data-title="PHP and MySQL"
+     data-author="Luke Welling & Laura Thomson"
+     data-price="750">
+
+    <img src="php and mysql.webp" alt="PHP and MySQL Book">
+
+    <h3>PHP and MySQL</h3>
+
+    <p class="author">
+        Luke Welling & Laura Thomson
+    </p>
+
+    <div class="rating">
+        ⭐⭐⭐⭐⭐
+    </div>
+
+    <div class="price">
+        ₹750
+    </div>
+
+    <div class="book-buttons">
+
+        <button class="details-btn"
+                onclick="bookDetails(
+                    'PHP and MySQL',
+                    'Luke Welling & Laura Thomson',
+                    750,
+                    'php mysql book.jpg'
+                )">
+            📖 Details
+        </button>
+
+        <button class="add-btn"
+                onclick="addToCart('PHP and MySQL', 750)">
+            🛒 Add
+        </button>
+
+    </div>
+
+</div>
+<!-- Electrical Engineering Book -->
+<div class="book-card"
+     data-category="Electrical Engineering"
+     data-title="Electrical Engineering"
+     data-author="V. K. Mehta & Rohit Mehta"
+     data-price="699">
+
+    <img src="Electrical engineering book.webp"
+         alt="Electrical Engineering Book">
+
+    <h3>Electrical Engineering</h3>
+
+    <p class="author">
+        V. K. Mehta & Rohit Mehta
+    </p>
+
+    <div class="rating">
+        ⭐⭐⭐⭐⭐
+    </div>
+
+    <div class="price">
+        ₹699
+    </div>
+
+    <div class="book-buttons">
+
+        <button class="details-btn"
+                onclick="bookDetails(
+                    'Electrical Engineering',
+                    'V. K. Mehta & Rohit Mehta',
+                    699,
+                    'Electrical engineering book.webp'
+                )">
+            📖 Details
+        </button>
+
+        <button class="add-btn"
+                onclick="addToCart('Electrical Engineering', 699)">
+            🛒 Add
+        </button>
+
+    </div>
+</div>
+<!-- Electronics Engineering Book -->
+<div class="book-card"
+     data-category="Electronics Engineering"
+     data-title="Electronic Devices and Circuits"
+     data-author="Salivahanan & N. Suresh Kumar"
+     data-price="650">
+
+    <img src="electronic engineering book.webp"
+         alt="Electronics Engineering Book">
+
+    <h3>Electronic Devices and Circuits</h3>
+
+    <p class="author">
+        Salivahanan & N. Suresh Kumar
+    </p>
+
+    <div class="rating">
+        ⭐⭐⭐⭐⭐
+    </div>
+
+    <div class="price">
+        ₹650
+    </div>
+
+    <div class="book-buttons">
+
+        <button class="details-btn"
+                onclick="bookDetails(
+                    'Electronic Devices and Circuits',
+                    'Salivahanan & N. Suresh Kumar',
+                    650,
+                    'electronic engineering book.webp'
+                )">
+            📖 Details
+        </button>
+
+        <button class="add-btn"
+                onclick="addToCart('Electronic Devices and Circuits', 650)">
+            🛒 Add
+        </button>
+
+    </div>
+</div>
+        <!-- Book 1 -->
+
+        <div class="book-card"
+             data-category="Programming"
+             data-title="Head First Java"
+             data-author="Kathy Sierra"
+             data-price="799">
+
+            <img src="java book.jpg">
+
+            <h3>Head First Java</h3>
+
+            <p class="author">
+                Kathy Sierra & Bert Bates
+            </p>
+
+            <div class="rating">⭐⭐⭐⭐⭐</div>
+
+            <div class="price">₹799</div>
+
+            <div class="book-buttons">
+
+                <button class="details-btn"
+                        onclick="bookDetails('Head First Java','Kathy Sierra & Bert Bates',799,'java book.jpg')">
+                    Details
+                </button>
+
+                <button class="add-btn"
+                        onclick="addToCart('Head First Java',799)">
+                    🛒 Add
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Book 2 -->
+
+        <div class="book-card"
+             data-category="Programming"
+             data-title="Python Crash Course"
+             data-author="Eric Matthes"
+             data-price="650">
+
+            <img src="python book.jpg">
+
+            <h3>Python Crash Course</h3>
+
+            <p class="author">Eric Matthes</p>
+
+            <div class="rating">⭐⭐⭐⭐⭐</div>
+
+            <div class="price">₹650</div>
+
+            <div class="book-buttons">
+
+                <button class="details-btn"
+                        onclick="bookDetails('Python Crash Course','Eric Matthes',650,'python book.jpg')">
+                    Details
+                </button>
+
+                <button class="add-btn"
+                        onclick="addToCart('Python Crash Course',650)">
+                    🛒 Add
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Book 3 -->
+
+        <div class="book-card"
+             data-category="Web"
+             data-title="HTML & CSS"
+             data-author="Jon Duckett"
+             data-price="599">
+
+            <img src="html book.jpg">
+
+            <h3>HTML & CSS</h3>
+
+            <p class="author">Jon Duckett</p>
+
+            <div class="rating">⭐⭐⭐⭐☆</div>
+
+            <div class="price">₹599</div>
+
+            <div class="book-buttons">
+
+                <button class="details-btn"
+                        onclick="bookDetails('HTML & CSS','Jon Duckett',599,'html book.jpg')">
+                    Details
+                </button>
+
+                <button class="add-btn"
+                        onclick="addToCart('HTML & CSS',599)">
+                    🛒 Add
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Book 4 -->
+
+        <div class="book-card"
+             data-category="Database"
+             data-title="Database System Concepts"
+             data-author="Silberschatz"
+             data-price="850">
+
+            <img src="dbms book.jpg">
+
+            <h3>Database System Concepts</h3>
+
+            <p class="author">Silberschatz</p>
+
+            <div class="rating">⭐⭐⭐⭐⭐</div>
+
+            <div class="price">₹850</div>
+
+            <div class="book-buttons">
+
+                <button class="details-btn"
+                        onclick="bookDetails('Database System Concepts','Silberschatz',850,'dbms book.jpg')">
+                    Details
+                </button>
+
+                <button class="add-btn"
+                        onclick="addToCart('Database System Concepts',850)">
+                    🛒 Add
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Book 5 -->
+
+        <div class="book-card"
+             data-category="AI"
+             data-title="Machine Learning"
+             data-author="Andrew Ng"
+             data-price="950">
+
+            <img src="ml book.jpg">
+
+            <h3>Machine Learning</h3>
+
+            <p class="author">Andrew Ng</p>
+
+            <div class="rating">⭐⭐⭐⭐⭐</div>
+
+            <div class="price">₹950</div>
+
+            <div class="book-buttons">
+
+                <button class="details-btn"
+                        onclick="bookDetails('Machine Learning','Andrew Ng',950,'ml book.jpg')">
+                    Details
+                </button>
+
+                <button class="add-btn"
+                        onclick="addToCart('Machine Learning',950)">
+                    🛒 Add
+                </button>
+
+            </div>
+
+        </div>
+        
+        <div class="book-card"
+             data-category="Database"
+             data-title="Database System Concepts"
+             data-author="Silberschatz"
+             data-price="850">
+
+            <img src="dbms book.jpg">
+
+            <h3>Database System Concepts</h3>
+
+            <p class="author">Silberschatz</p>
+
+            <div class="rating">⭐⭐⭐⭐⭐</div>
+
+            <div class="price">₹850</div>
+
+            <div class="book-buttons">
+
+                <button class="details-btn"
+                        onclick="bookDetails('Database System Concepts','Silberschatz',850,'dbms book.jpg')">
+                    Details
+                </button>
+
+                <button class="add-btn"
+                        onclick="addToCart('Database System Concepts',850)">
+                    🛒 Add
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="section" id="about">
+
+    <div class="about">
+
+        <h2>
+            About SIET Online Book Store
+        </h2>
+
+        <p>
+            SIET Online Book Store is a student-friendly digital
+            bookstore designed to provide educational and technical
+            books in one place. Students can browse categories,
+            search books, view details and add books to their cart.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <h3>📚 SIET Online Book Store</h3>
+
+    <p>
+        Knowledge • Learning • Success
+    </p>
+
+    <p>
+        © 2026 SIET Online Book Store
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     BOOK DETAILS MODAL
+========================= -->
+
+/* =========================
+   BOOK DETAILS GALLERY
+========================= */
+<!-- =========================
+     BOOK DETAILS MODAL
+========================= -->
+
+<div class="modal" id="detailsModal">
+
+    <div class="modal-box">
+
+        <span class="close"
+              onclick="closeModal('detailsModal')">
+            ×
+        </span>
+
+        <div class="details-gallery">
+
+            <img id="detailImage"
+                 class="main-detail-image"
+                 src=""
+                 alt="Book Image">
+
+            <div class="gallery-thumbnails">
+
+                <img id="thumb1"
+                     class="gallery-thumb active"
+                     src=""
+                     onclick="changeDetailImage(0)">
+
+                <img id="thumb2"
+                     class="gallery-thumb"
+                     src=""
+                     onclick="changeDetailImage(1)">
+
+                <img id="thumb3"
+                     class="gallery-thumb"
+                     src=""
+                     onclick="changeDetailImage(2)">
+
+            </div>
+
+            <div class="gallery-buttons">
+
+                <button onclick="previousImage()">
+                    ◀ Previous
+                </button>
+
+                <button onclick="nextImage()">
+                    Next ▶
+                </button>
+
+            </div>
+
+        </div>
+
+        <h2 id="detailTitle"></h2>
+
+        <p id="detailAuthor"></p>
+
+        <h3 id="detailPrice"
+            style="margin-top:15px;">
+        </h3>
+
+        <p style="margin-top:15px;color:#666;line-height:1.6;">
+            This book is useful for students and learners.
+            Explore the book images and add it to your cart.
+        </p>
+
+        <button onclick="addDetailToCart()"
+                style="width:100%;padding:12px;margin-top:20px;border:none;border-radius:25px;background:#0d47a1;color:white;font-weight:bold;">
+            🛒 Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     LOGIN MODAL
+========================= -->
+
+<div class="modal" id="loginModal">
+
+    <div class="modal-box">
+
+        <span class="close"
+              onclick="closeModal('loginModal')">
+            ×
+        </span>
+
+        <h2>👤 Login</h2>
+
+        <input type="email"
+               placeholder="Email Address">
+
+        <input type="password"
+               placeholder="Password">
+
+        <button onclick="loginUser()">
+            Login
+        </button>
+
+        <p style="text-align:center;margin-top:15px;">
+            Don't have an account?
+            <a href="#"
+               onclick="closeModal('loginModal');openRegister();return false;">
+                Register
+            </a>
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     REGISTER MODAL
+========================= -->
+
+<div class="modal" id="registerModal">
+
+    <div class="modal-box">
+
+        <span class="close"
+              onclick="closeModal('registerModal')">
+            ×
+        </span>
+
+        <h2>📝 Create Account</h2>
+
+        <input type="text"
+               placeholder="Full Name">
+
+        <input type="email"
+               placeholder="Email Address">
+
+        <input type="password"
+               placeholder="Create Password">
+
+        <input type="password"
+               placeholder="Confirm Password">
+
+        <button onclick="registerUser()">
+            Register
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     CART MODAL
+========================= -->
+
+<div class="modal" id="cartModal">
+
+    <div class="modal-box">
+
+        <span class="close"
+              onclick="closeModal('cartModal')">
+            ×
+        </span>
+
+        <h2>🛒 Your Cart</h2>
+
+        <div id="cartItems">
+            Your cart is empty.
+        </div>
+
+        <div class="cart-total">
+            Total: ₹<span id="cartTotal">0</span>
+        </div>
+
+        <button class="checkout-btn"
+                onclick="checkout()">
+            Proceed to Checkout
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   MENU
+========================= */
+
+function toggleMenu() {
+
+    document
+        .getElementById("navMenu")
+        .classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    document
+        .getElementById("navMenu")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   CATALOGUE
+========================= */
+
+function showCatalogue() {
+
+    document
+        .getElementById("catalogue")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchBooks() {
+
+    let input =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let books =
+        document
+        .querySelectorAll("#catalogueBooks .book-card");
+
+    showCatalogue();
+
+    books.forEach(function(book) {
+
+        let title =
+            book.dataset.title.toLowerCase();
+
+        let author =
+            book.dataset.author.toLowerCase();
+
+        if (
+            title.includes(input) ||
+            author.includes(input)
+        ) {
+
+            book.style.display = "block";
+
+        } else {
+
+            book.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   CATEGORY FILTER
+========================= */
+
+function filterBooks() {
+
+    let category =
+        document
+        .getElementById("categoryFilter")
+        .value;
+
+    let books =
+        document
+        .querySelectorAll("#catalogueBooks .book-card");
+
+    books.forEach(function(book) {
+
+        if (
+            category === "all" ||
+            book.dataset.category === category
+        ) {
+
+            book.style.display = "block";
+
+        } else {
+
+            book.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+function filterCategory(category) {
+
+    document
+        .getElementById("categoryFilter")
+        .value = category;
+
+    filterBooks();
+
+    showCatalogue();
+
+}
+
+
+/* =========================
+   SORT
+========================= */
+
+function sortBooks() {
+
+    let container =
+        document.getElementById("catalogueBooks");
+
+    let books =
+        Array.from(
+            container.querySelectorAll(".book-card")
+        );
+
+    let sort =
+        document.getElementById("sortFilter").value;
+
+    if (sort === "low") {
+
+        books.sort(function(a,b) {
+
+            return Number(a.dataset.price)
+                 - Number(b.dataset.price);
+
+        });
+
+    }
+
+    if (sort === "high") {
+
+        books.sort(function(a,b) {
+
+            return Number(b.dataset.price)
+                 - Number(a.dataset.price);
+
+        });
+
+    }
+
+    books.forEach(function(book) {
+
+        container.appendChild(book);
+
+    });
+
+}
+
+
+/* =========================
+   BOOK DETAILS
+========================= */
+
+/* =========================
+   BOOK DETAILS GALLERY
+========================= */
+
+let selectedBook = null;
+
+let detailImages = [];
+
+let currentImageIndex = 0;
+
+
+function bookDetails(title, author, price, image) {
+
+    selectedBook = {
+        title: title,
+        price: price
+    };
+
+    /*
+       अभी आपके पास एक main image है।
+       दूसरी और तीसरी images बाद में यहाँ add कर सकते हैं.
+    */
+
+    detailImages = [
+        image,
+        image,
+        image
+    ];
+
+    currentImageIndex = 0;
+
+    document.getElementById("detailTitle").innerText =
+        title;
+
+    document.getElementById("detailAuthor").innerText =
+        "Author: " + author;
+
+    document.getElementById("detailPrice").innerText =
+        "Price: ₹" + price;
+
+    showDetailImage();
+
+    document.getElementById("detailsModal").style.display =
+        "block";
+}
+
+
+function showDetailImage() {
+
+    document.getElementById("detailImage").src =
+        detailImages[currentImageIndex];
+
+    document.getElementById("thumb1").src =
+        detailImages[0];
+
+    document.getElementById("thumb2").src =
+        detailImages[1];
+
+    document.getElementById("thumb3").src =
+        detailImages[2];
+
+
+    let thumbnails =
+        document.querySelectorAll(".gallery-thumb");
+
+    thumbnails.forEach(function(thumb, index) {
+
+        thumb.classList.remove("active");
+
+        if (index === currentImageIndex) {
+            thumb.classList.add("active");
+        }
+
+    });
+
+}
+
+
+function changeDetailImage(index) {
+
+    currentImageIndex = index;
+
+    showDetailImage();
+
+}
+
+
+function nextImage() {
+
+    currentImageIndex++;
+
+    if (currentImageIndex >= detailImages.length) {
+        currentImageIndex = 0;
+    }
+
+    showDetailImage();
+
+}
+
+
+function previousImage() {
+
+    currentImageIndex--;
+
+    if (currentImageIndex < 0) {
+        currentImageIndex = detailImages.length - 1;
+    }
+
+    showDetailImage();
+
+}
+
+
+function addDetailToCart() {
+
+    if (selectedBook) {
+
+        addToCart(
+            selectedBook.title,
+            selectedBook.price
+        );
+
+        closeModal("detailsModal");
+
+    }
+
+}
+/* =========================
+   FIRST LOGIN SYSTEM
+========================= */
+
+function firstLogin() {
+
+    let email =
+        document.getElementById("firstLoginEmail").value.trim();
+
+    let password =
+        document.getElementById("firstLoginPassword").value.trim();
+
+
+    if (email === "" || password === "") {
+
+        alert("Please enter Email and Password.");
+
+        return;
+
+    }
+
+
+    /*
+       Frontend demo login.
+       Real secure login can be connected
+       with PHP + MySQL later.
+    */
+
+    localStorage.setItem("sietLoggedIn", "true");
+
+    document.getElementById("firstLoginScreen").style.display =
+        "none";
+
+    alert("Login successful! Welcome to SIET Book Store.");
+
+}
+
+
+function openRegisterFromFirstLogin() {
+
+    document.getElementById("firstLoginScreen").style.display =
+        "none";
+
+    openRegister();
+
+}
+
+
+/* =========================
+   CHECK LOGIN STATUS
+========================= */
+
+window.addEventListener("load", function() {
+
+    let loggedIn =
+        localStorage.getItem("sietLoggedIn");
+
+    if (loggedIn === "true") {
+
+        document.getElementById("firstLoginScreen").style.display =
+            "none";
+
+    } else {
+
+        document.getElementById("firstLoginScreen").style.display =
+            "flex";
+
+    }
+
+});
+/* =========================
+   CART
+========================= */
+
+let cart = [];
+
+
+function addToCart(name, price) {
+
+    let existing =
+        cart.find(function(item) {
+
+            return item.name === name;
+
+        });
+
+    if (existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+
+    }
+
+    updateCart();
+
+    alert(name + " added to cart!");
+
+}
+
+
+function updateCart() {
+
+    let count = 0;
+
+    let total = 0;
+
+    cart.forEach(function(item) {
+
+        count += item.quantity;
+
+        total += item.price * item.quantity;
+
+    });
+
+    document.getElementById("cartCount").innerText =
+        count;
+
+    document.getElementById("cartTotal").innerText =
+        total;
+
+
+    let cartItems =
+        document.getElementById("cartItems");
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML =
+            "Your cart is empty.";
+
+        return;
+
+    }
+
+
+    cartItems.innerHTML = "";
+
+
+    cart.forEach(function(item, index) {
+
+        let div =
+            document.createElement("div");
+
+        div.className = "cart-item";
+
+        div.innerHTML = `
+
+            <div>
+                <b>${item.name}</b>
+                <br>
+                ₹${item.price}
+            </div>
+
+            <div class="quantity">
+
+                <button onclick="changeQuantity(${index}, -1)">
+                    −
+                </button>
+
+                ${item.quantity}
+
+                <button onclick="changeQuantity(${index}, 1)">
+                    +
+                </button>
+
+            </div>
+
+        `;
+
+        cartItems.appendChild(div);
+
+    });
+
+}
+
+
+function changeQuantity(index, amount) {
+
+    cart[index].quantity += amount;
+
+    if (cart[index].quantity <= 0) {
+
+        cart.splice(index, 1);
+
+    }
+
+    updateCart();
+
+}
+
+
+function openCart() {
+
+    updateCart();
+
+    document.getElementById("cartModal").style.display =
+        "block";
+
+}
+
+
+/* =========================
+   LOGIN / REGISTER
+========================= */
+
+function openLogin() {
+
+    document.getElementById("loginModal").style.display =
+        "block";
+
+}
+
+
+function openRegister() {
+
+    document.getElementById("registerModal").style.display =
+        "block";
+
+}
+
+
+function loginUser() {
+
+    alert("Login successful! Welcome to SIET Book Store.");
+
+    closeModal("loginModal");
+
+}
+
+
+function registerUser() {
+
+    alert("Registration successful! You can now login.");
+
+    closeModal("registerModal");
+
+}
+
+
+/* =========================
+   CHECKOUT
+========================= */
+
+function checkout() {
+
+    if (cart.length === 0) {
+
+        alert("Your cart is empty!");
+
+        return;
+
+    }
+
+    alert(
+        "Checkout page will be available after connecting a payment system."
+    );
+
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeModal(id) {
+
+    document.getElementById(id).style.display =
+        "none";
+
+}
+
+
+window.onclick = function(event) {
+
+    if (event.target.classList.contains("modal")) {
+
+        event.target.style.display = "none";
+
+    }
+
+};
+
+
+/* =========================
+   INITIAL
+========================= */
+
+updateCart();
+
+</script>
+
+</body>
+</html>
